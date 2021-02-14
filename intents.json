@@ -1,0 +1,421 @@
+{"intents": [
+	{"tag": "greeting",
+	 "patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day", "Hey", "howdy"],
+	 "responses": ["Hello, How can I help you?", "What's up what can I do for you?"],
+	 "content_set": ""
+	},
+	{"tag": "goodbye",
+         "patterns": ["Bye", "See you later", "Goodbye"],
+         "responses": ["See you later, thanks for visiting", "Have a nice day", "Bye! Come back again soon."],
+	 "content_set": ""
+	},
+	{"tag": "thanks",
+         "patterns": ["Thanks", "Thank you", "That's helpful"],
+         "responses": ["Happy to help!", "Any time!", "My pleasure"],
+	 "context_set": ""
+        },
+	{"tag": "need_help",
+	 "patterns": ["Help me feel better", "Improve my mood", "Help with my mood"],
+	 "responses": ["What is you're problem?", "What exactly do you need help with", "Okay tell me your problem"],
+	 "context_set": "problem_told"
+	},
+	{"tag": "stating_problem",
+	 "patterns": ["Im having problem with"],
+	 "responses": ["Sorry to hear that", "Ouch that sucks", "that sounds tough"],
+	 "context_filter": "problem_told",
+	 "context_set": "problem_got"
+	},
+	{"tag": "depression",
+	 "patterns": ["Depression","1","1. Depression"],
+	 "responses": ["Oh gosh! That must be really tough", "Im so sorry to hear that", "that sounds tough"],
+	 "context_set": "depressed",
+	 "context_filter": "categorize_problem"
+	},
+	{"tag": "work_on_it",
+	 "patterns": ["work on it", "want your help", "need help"],
+	 "responses": ["So do you want to challenge your thought or do you want things to do right now?", "Challenge thinking or things to do now?"],
+	 "context_filter": "depressed_1",
+	 "context_set": "depressed_2"
+	},
+	{"tag": "question1_depression",
+	 "patterns": ["I have this problem"],
+	 "responses": ["does the thought attach any labels to you?", "does your thoughts focuses on you?"],
+	 "context_filter": "depressed_2",
+	 "context_set": "problem_told_depression"
+	},
+	{"tag": "question_to_question1_depression",
+	 "patterns": ["labels?", "will you please ellaborate on labels?", "what is label?", "what does that mean?", "what does it mean?", "i didnt get you"],
+	 "responses": ["Your thoughts might make you feel you are not worth anything. It can also say that you do not deserve any good.", "Your thought can make you believe that success is not your cup of tea. For example: You are preparing for an exam, how much ever prepared you are you still feel you'll flunk"],
+	 "context_set": "questoques1explained",
+	 "context_filter": "problem_told_depression"
+	},
+	{"tag": "question_to_question2_depression",
+	 "patterns": ["catastrophe?", "will you please ellaborate on catastrophe?", "what is that","what do you mean by that","what so you mean by catastrophe?"],
+	 "responses": ["This distortion makes the negative thoughts seem huge and daunting, and positive stuff seem small and insignificant", "A negative perception of life can destroy our understanding of good and bad situations. Most of the times, our negative thoughts seem huge and daunting, and positive things seem small and insignificant"],
+	 "context_filter": "catastrophe",
+	 "context_set": "ques2explained"
+	},
+	{"tag": "question_to_question3_depression",
+	 "patterns": ["what is that?", "will you please ellaborate?", "what cycle?", "what do you mean by that?", "what is negative cycle?","i didnt understand what negative cycle is"],
+	 "responses": ["we see one negative event as a part of longer chain of negative things that happen to us","We often tend to contemplate too much about our unseen setbacks and assume it to be a part of another major setback"],
+	 "context_filter": "distortion",
+	 "context_set": "ques3explained"
+	},
+	{"tag": "explainreccdist_depression",
+	 "patterns": ["why?", "oh, Why so", "is it?"],
+	 "responses": ["If you feel that everything needs to be perfect, and something is less-than-perfect, you might begin to see it as a downright disastrous"],
+	 "context_filter": "givingAName",
+ 	 "context_set": "everythingExplained"
+	},
+	{"tag": "questtion_to_question4_depression",
+	 "patterns": ["whats that?", "what does it mean", "I dont understand", "what do you mean by emotional reasoning?", "emotional reasoning?"],
+	 "responses": ["We assume that our negative emotions are a reflection of the way things actualy are. Eg 'I feel so boring and everyone else notices how boring i am"],
+	 "context_filter": "emotionalreasoning",
+	 "context_set": "ques4explained"
+	},
+	{"tag": "anxiety",
+	 "patterns": ["anxiety"],
+	 "responses":["want my help or just wanted to share"],
+	 "context_set":"anxiety"
+	},
+	{"tag": "work_on_it_anxiety",
+	 "patterns": ["work on it", "want your help", "need help"],
+	 "responses": ["So do you want to challenge your thought or do you want things to do right now?", "Challenge thinking or things to do now?"],
+	 "context_filter": "anxiety",
+	 "context_set": "what_to_do"
+	},
+	{"tag": "challenge_thought_anxiety",
+	 "patterns": ["Challenge my thought", "challenge my thinking"],
+	 "responses": ["Okay, so I want you to focus on your negative thoughts and write it down"],
+	 "context_set": "write_thought_anxiety1",
+	 "context_filter": "what_to_do"
+	},
+	{"tag": "question1_anxiety",
+	 "patterns": ["I have this problem"],
+	 "responses": ["is your thought serving a purpose?", "is there a purpose behind your thought?"],
+	 "context_set": "write_thought_anxiety",
+	 "context_filter": "write_thought_anxiety1"
+	},
+	{"tag": "ques_to_q1_anxiety",
+	 "patterns": ["what is that?", "what do you mean by that?", "what does it mean?", "what serving a purpose mean?", "I dont understand"],
+	 "responses": ["eg: you study harder under pressure", "your thought might aid in increasing your productivity"],
+	 "context_set": "questoques1explained_anxiety",
+	 "context_filter": "write_thought_anxiety"
+	},
+	{"tag": "question_to_question2_anxiety",
+	 "patterns": ["What is that?", "what do you mean by that?", "what does it mean?", "what does future assuming mean?", "I dont understand"],
+	 "responses": ["Do you assume things will turn out badly", "Do you assume things will turn out poorly", "You assume, if you attempt something it will turn out poorly"],
+	 "context_filter": "future_assuming",
+	 "context_set": "future_assuming_explanation"
+	},
+	{
+"tag": "addiction",
+"patterns": ["addiction", "3"],
+"responses": ["I know this can be really difficult process and im here to help you through the next few moments and long term as well"],
+"context_set": "addiction",
+"context_filter": "categorize_problem"
+},
+{
+"tag": "need_help_adiction",
+"patterns": ["need help", "work on it", "want your help", "help with it"],
+"responses": ["okay there are few ways we can go about it"],
+"context_set": "help_addiction",
+"context_filter": "what_to_do_adiction"
+},
+{
+"tag": "what_to_do_addiction2",
+"patterns": ["what are they?", "okay", "what", "what can be done", "which ways?"],
+"responses": ["well first up we could try a distraction"],
+"context_set": "distraction_addiction",
+"context_filter": "help_addiction"
+},
+{
+"tag": "explain_distraction_addiction",
+"patterns": ["how is that useful?", "what will it do?", "how will it help", "what will that do?"],
+"responses": ["A distraction can sometimes help you get through a craving by focusing your attention on something else"],
+"context_set": "explain_distraction",
+"context_filter": "distraction_addiction"
+},
+{
+"tag": "affirmation_distraction_addiction",
+"patterns": ["can we do a distraction", "yes", "okay distraction it is"],
+"responses": ["sure, distraction it is (take to any site with fun activities or give them riddles)"],
+"context_set": "done_solution",
+"context_filter": "distraction_addiction"
+},
+{
+"tag": "no_distraction_addiction_after",
+"patterns": ["what else can be done", "not distraction again", "something else"],
+"responses": ["No worries, I have a powerful tool that helps you cut ties with things, places or people that might tempt you to use substances"],
+"context_set": "no_distraction",
+"context_filter": "done_solution"
+},
+{
+"tag": "no_distraction_addiction",
+"patterns": ["what else can be done", "not distraction again", "something else"],
+"responses": ["No worries, I have a powerful tool that helps you cut ties with things, places or people that might tempt you to use substances"],
+"context_set": "no_distraction",
+"context_filter": "distraction_addiction"
+},
+{
+"tag": "how_wreck",
+"patterns": ["how would I wreck them", "how to wreck", "wreck?"],
+"responses": ["there are a ton of ways to wreck your ships, and it all depends on what works for your situation. Some people may be able t wreck them by throwing things away, blocking phone numbers or ending relationships. others may need to get more creative. I'l have some ideas if you nee any help along the way"],
+"context_set": "wrecking_explained",
+"context_filter": "no_distraction3"
+},
+{
+"tag": "first_substance_addiction",
+"patterns": ["the first substance is.."],
+"responses": ["I want you to think of using it as an island"],
+"context_set": "got_first_substance",
+"context_filter": "first_substance"
+},
+{
+"tag": "wrote_everything_addiction",
+"patterns": ["all the ships..."],			
+"responses": ["these are the ships you are wrecking"],
+"context_set": "wrote_ships",
+"context_filter": "write_ships"
+},
+{
+"tag": "ideas_wrecking",
+"patterns": ["lets do it", "okay"],
+"responses": ["So do you have any ideas about a strategy for wrecking your ships"],
+"context_set": "ideas_wrecking",
+"context_filter": "next_job"
+},
+{
+"tag": "need_ideas_addiction",
+"patterns": ["need some help with ideas", "need some ideas", "can you help me in that case", "can you help me with ideas", "I dont have any ideas", "no I dont"],
+"responses": ["Sure ive got tips for handling relationships, places, things which would be helpful? We can do more than one"],
+"context_set": "which_category",
+"context_filter": "ideas_wrecking"
+},
+{
+"tag": "things_addiction",
+"patterns": ["things"],
+"responses": ["sure a lot of your options might look like throwing the objects away. you could try giving them to a friend. Depending on what you are getting rid of, like certain pils, you may be able to donate them or call a cllection service"],
+"context_set": "solve_things",
+"context_filter": "which_category"
+},
+{
+"tag": "go_plan_for_things",
+"patterns": ["i can do that"],
+"responses": ["ok share your plan with me here"],
+"context_set": "sharing_plan_for_things",
+"context_filter": "solve_things"
+},
+{
+"tag": "plan_for_thing",
+"patterns": ["my plan for things is"],
+"responses": ["awesome! LAstly i challenge you to tell everyone close to you about your goals. Thats an important part of staying off the sland. Those people can help and they can hold you accountable"],
+"context_set": "last_challenge_thing",
+"context_filter": "sharing_plan_for_things"
+},
+{
+"tag": "the_end",
+"patterns": ["better", "good"],
+"responses":["Im so glad it worked for you. It ll be in your toolbox in case you want to wreck anymore ships"],
+"context_set": "the_end_addiction",
+"context_filter": "the_end_things"
+},
+{
+"tag": "the_end_bad",
+"patterns": ["bad", "same", "worse"],
+"responses": ["IM Sorry to hear that. Please let me know what went wrong so that I can improve"],
+"context_set": "the_end_addiction",
+"context_filter": "the_end_things"
+},
+{
+"tag": "ANGER",
+"patterns": ["anger", "angry", "4"],
+"responses": ["Would you like to use some of my tools or did you just want to share of the frustration you're feeling"],
+"context_set": "what_to_do_angry"
+},
+{
+"tag": "just_sharing_angry",
+"patterns": ["just_sharing"],
+"responses": ["Just getting things out of our head and into words can sometimes therapeutic too. Unload some here"],
+"context_set": "unloading_anger",
+"context_filter": "what_to_do_angry"
+},
+{
+"tag": "just_shared_angry",
+"patterns": ["i have this problem"],
+"responses": ["Thanks for letting me know whats going on. we can talk about it more later , too, if you like"],
+"context_set": "unloaded_anger",
+"context_filter": "unloading_anger"
+},
+{
+"tag": "end_sharing_angry",
+"patterns": ["okay"],
+"responses": ["Okay thanks for popping in today, see you soon"],
+"context_set": "done_angry",
+"context_filter": "unloaded_anger"
+},
+{
+"tag": "work_on_it_anger",
+"patterns": ["work on it", "want your help", "need your help"],
+"responses": ["we're going to write down the 3 of you angry thoughts. Keep it short and specific"],
+"context_set": "okay_weLL_work_angry",
+"context_filter": "what_to_do_angry"
+},
+{
+"tag": "question_1_angry",
+"patterns": ["okay"],
+"responses": ["Does your thought suggest someone should have acted or done things differently? eg: When we expect people to behave or act in a certain way we get disappointed when they don't live up to our expectations. Is this true for you? "],
+"context_set": "question_1_angry",
+"context_filter": "okay_weLL_work_angry"
+},
+{
+"tag": "yes_question1_angry",
+"patterns": ["yes", "yeah"],
+"responses": ["Ah yes, a common distortion linked to anger - a 'they should' statement"],
+"context_set": "aff_question1_angry",
+"context_filter": "question_1_angry"
+},
+{
+"tag": "question2_angry",
+"patterns": ["okay"],
+"responses": ["Does your thought suggest someone else is the reason of your anger?"],
+"context_set": "question2_angry",
+"context_filter": "aff_question1_angry"
+},
+{
+"tag": "neg_question1_angry",
+"patterns": ["no", "not at all"],
+"responses": ["Does your thought suggest someone else is the reason of your anger?"],
+"context_set": "question2_angry",
+"context_filter": "question_1_angry"
+},
+{
+"tag": "aff_question2_angry",
+"patterns": ["yes", "yeah"],
+"responses": ["This is called blaming. Sometimes it can be easier to hold others responsible for the way you. When we blame someone else we might overlook our own contributions to the problem. But only you can control how you feel and blaming others might be a wrong outlet for your anger."],
+"context_set": "aff_question2_angry",
+"context_filter": "question2_angry"
+},
+{
+"tag": "aff_question2_angry",
+"patterns": ["yes", "yeah"],
+"responses": ["This is called blaming. Sometimes it can be easier to hold others responsible for the way you. When we blame someone else we might overlook our own contributions to the problem. But only you can control how you feel and blaming others might be a wrong outlet for your anger."],
+"context_set": "yes_no_question2_angry",
+"context_filter": "question2_angry"
+},
+{
+"tag": "neg_question2_angry",
+"patterns": ["no", "not at all"],
+"responses": ["okay, if it ever does come up for you , this distortion is called blaming"],
+"context_set": "yes_no_question2_angry",
+"context_filter": "question2_angry"
+},
+{
+"tag": "question3_angry",
+"patterns": ["okay"],
+"responses": ["Are you assuming others are reacting negatively to you?"],
+"context_set": "question3_angry",
+"context_filter": "yes_no_question2_angry"
+},
+{
+"tag": "aff_question3_angry",
+"patterns": ["yes", "yeah"],
+"responses": ["This is called Mind-reading. People feel angry when they assume that they are being treated unfairly. Such assumptions only add fuel to the fire and you should be aware of such assumptions."],
+"context_set": "yes_no_question3_angry",
+"context_filter": "question3_angry"
+},
+{
+"tag": "neg_question3_angry",
+"patterns": ["no", "not at all"],
+"responses": ["Great efforts so far ...I know it's not always easy, especially when we can feel like there's a fire inside of us"],
+"context_set": "yes_no_question3_angry",
+"context_filter": "question3_angry"
+},
+{
+"tag": "done_questions_angry",
+"patterns": ["okay"],
+"responses": ["now we are on the  most crucial part"],
+"context_set": "no_more_angry",
+"context_filter": "yes_no_question3_angry"
+},
+{
+"tag": "rewrite_angry",
+"patterns": ["whats that?"],
+"responses": ["Rewrite your thought, but this time try adding in some understanding towards yourself and others"],
+"context_set": "rewrite_angry",
+"context_filter": "no_more_angry"
+},
+{
+"tag": "go_rewrite_angry",
+"patterns": ["okay"],
+"responses": ["The aim here is not to rewrite your thought so that it' positive and cheerful. It's to remove the distortions and make the thought more realistic to take away its sting"],
+"context_set": "go_rewrite_angry",
+"context_filter": "rewrite_angry"
+},
+{
+"tag": "go_rewrite2_angry",
+"patterns": ["okay"],
+"responses": ["Now try rewriting so its more balanced"],
+"context_set": "go_rewrite2_angry",
+"context_filter": "go_rewrite_angry"
+},
+{
+"tag": "actual_rewrite_angry",
+"patterns": ["I have this problem"],
+"responses": ["how did it go?"],
+"context_set": "actual_rewrite_angry",
+"context_filter": "go_rewrite2_angry"
+},
+{
+"tag": "after_rewrite_angry",
+"patterns": ["good", "really good", "great"],
+"responses": ["That is wonderful to hear "],
+"context_set": "good_rewrite_angry",
+"context_filter": "actual_rewrite_angry"
+},
+{
+"tag": "how_feel_angry",
+"patterns": ["yes", "yeah"],
+"responses": ["How do you feel now"],
+"context_set": "how_feel_angry",
+"context_filter": "good_rewrite_angry"
+},
+{
+"tag": "better_feel_angry",
+"patterns": ["good", "better", "great", "better than before", "a little better"],
+"responses": ["how about we leave it there for now and we can chat again tomorrow?"],
+"context_set": "the_end",
+"context_filter": "how_feel_angry"
+},
+{
+"tag": "end_angry",
+"patterns": ["okay"],
+"responses": ["Good Talking to you . Bye!"],
+"context_set": "end",
+"context_filter": "the_end"
+},
+{
+"tag": "worse_feel_angry",
+"patterns": ["worse", "not good", "bad", "still angry"],
+"responses": ["i am so sorry you feel worse than before I know where it would have gone wrong. Let's give it a another try"],
+"context_set": "no_end",
+"context_filter": "how_feel_angry"
+},
+{
+"tag": "tryagain_feel_angry",
+"patterns": ["okay"],
+"responses": ["Now try rewriting so its more balanced"],
+"context_set": "go_rewrite2_angry",
+"context_filter": "no_end"
+},
+{
+"tag": "tryagain2_feel_angry",
+"patterns": ["can i try again"],
+"responses": ["alright Now try rewriting so its more balanced"],
+"context_set": "go_rewrite2_angry",
+"context_filter": "actual_rewrite_angry"
+}
+    ]
+}
+
+
